@@ -22,11 +22,11 @@ Reproduce manually
 
 Manually build and install:
 
-    ./configure --prefix=$PWD/foo_install
-    make
-    make install
+    $ ./configure --prefix=$PWD/foo_install
+    $ make
+    $ make install
 
-Each executable are links to the same inode:
+Each executable is a reference to the same inode (link):
 
     $ find foo_install/ -type f -executable -exec ls -l {} \;
     -rwxr-xr-x 3 froger sed 8465 2015-01-05 11:03 foo_install/bin/foo
@@ -35,15 +35,18 @@ Each executable are links to the same inode:
 
 Change rpath:
 
-    patchelf --set-rpath '$ORIGIN/../lib' foo_install/bin/foo
-    patchelf --set-rpath '$ORIGIN/../lib' foo_install/libexec/foo-core/foo-cmd0
-    patchelf --set-rpath '$ORIGIN/../lib' foo_install/libexec/foo-core/foo-cmd1
+    $ patchelf --set-rpath '$ORIGIN/../lib' foo_install/bin/foo
+    $ patchelf --set-rpath '$ORIGIN/../lib' foo_install/libexec/foo-core/foo-cmd0
+    $ patchelf --set-rpath '$ORIGIN/../lib' foo_install/libexec/foo-core/foo-cmd1
 
 There is three copy of the executable:
 
     $ find foo_install/ -type f -executable -exec ls -l {} \;
+    -rwxr-xr-x 1 froger sed 12561 2015-01-05 11:35 foo_install/bin/foo
+    -rwxr-xr-x 1 froger sed 12561 2015-01-05 11:35 foo_install/libexec/foo-core/foo-cmd0
+    -rwxr-xr-x 1 froger sed 12561 2015-01-05 11:35 foo_install/libexec/foo-core/foo-cmd1
 
 Clean:
 
-    make clean
-    rm -rf foo_install
+    $ make clean
+    $ rm -rf foo_install
