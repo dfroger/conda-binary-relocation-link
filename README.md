@@ -50,3 +50,11 @@ Clean:
 
     $ make clean
     $ rm -rf foo_install
+
+patchelf
+----------------------------
+
+patchelf breaks hardlinks:
+
+    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=759497
+    https://github.com/NixOS/patchelf/issues/32
