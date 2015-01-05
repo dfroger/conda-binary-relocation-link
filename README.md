@@ -28,3 +28,7 @@ Build a conda package:
 There is three copy of the executable:
 
     $ find /local/froger/miniconda/envs/_build/ -type f -executable -exec ls -l {} \;
+    -rwxr-xr-x 1 froger sed 8465 2015-01-05 11:06 /local/froger/miniconda/envs/_build/bin/foo
+    -rwxr-xr-x 1 froger sed 8465 2015-01-05 11:06 /local/froger/miniconda/envs/_build/libexec/foo-core/foo-cmd0
+    -rwxr-xr-x 1 froger sed 8465 2015-01-05 11:06 /local/froger/miniconda/envs/_build/libexec/foo-core/foo-cmd1
+
