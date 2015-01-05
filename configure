@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Configure project.')
+parser.add_argument('--prefix', help='Installation prefix', required=True)
+args = parser.parse_args()
+
+makefile = open('Makefile.in').read()
+makefile = makefile.replace('PREFIX_IN', args.prefix)
+
+with open('Makefile','w') as f:
+    f.write(makefile)

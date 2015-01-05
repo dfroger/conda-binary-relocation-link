@@ -1,0 +1,10 @@
+package:
+  name: conda-binary-relocation-link
+  version: 0.0.0
+
+source:
+  path: ../
+
+build:
+  number: 0
+  binary_relocation: true

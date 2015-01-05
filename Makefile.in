@@ -1,0 +1,16 @@
+PREFIX=PREFIX_IN
+
+all: foo
+
+foo: foo.c
+	gcc -o $@ $< -DPREFIX='"$(PREFIX)"'
+
+install:
+	mkdir -p $(PREFIX)/bin
+	mkdir -p $(PREFIX)/libexec/foo-core
+	cp foo $(PREFIX)/bin
+	ln $(PREFIX)/bin/foo $(PREFIX)/libexec/foo-core/foo-cmd0
+	ln $(PREFIX)/bin/foo $(PREFIX)/libexec/foo-core/foo-cmd1
+
+clean:
+	rm -rf foo Makefile
